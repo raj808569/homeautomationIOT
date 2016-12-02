@@ -59,6 +59,8 @@
 			</div>
 		</body>
 		<script>
+			$(function(){
+				var socket = io.connect();
 			$("#light1on").click(function(){
 				$("#light1").attr("src","yellowlight.png");
 			});
@@ -76,6 +78,7 @@
 			});
 			$("#light2off").click(function(){
 				$("#light2").attr("src","whitelight.png");
+			});
 			});
 		</script>
 	</html>
