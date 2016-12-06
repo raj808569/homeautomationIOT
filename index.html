@@ -14,91 +14,68 @@
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 			<title>Home Automation</title>
-			<link rel="icon" type="image/png" href="/images/android-icon-48x48.png" />
+			<link rel="icon" type="image/png" href="haut.png" />
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
 					type="text/javascript"></script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-                        <script src="/socket.io/socket.io.js"></script>
 		</head>
 		<body class="apply">
 			<div class="row" style="background-color:#34495E;height:60px;">
-				<div class="col-md-3">
-					<img class="img-responsive" src="/images/hauto.png" style="max-width:25%;">
+				<div class="col-md-3 col-xs-3">
+					<img class="img-responsive" src="hauto.png" style="width:54px;height:56px;">
 				</div>
-				<div class="col-md-7">
-					<h3 style="color:white;">Home Automation </h3>
+				<div class="col-md-6 col-xs-7"style="padding-left:2px;" >
+					<h3 style="color:#b9ff46;font-size:20px;"><center>Home Automation </center></h3>
 				</div>
-				<div class="col-md-offset-1 col-md-1">
+				<div class="col-md-3 col-xs-2">
 					<a href="https://github.com/raj808569/homeautomationIOT">
-						<img src="/images/github.png" style="max-width:73%;">
+						<img src="github.png" style="width:54px;float:right;height:56px;">
 					</a>
 				</div>
 			</div>
-			<div class="row" style="padding-top:50px;padding-left:50px;">
-				<div class="col-md-4">
-					<img id="light1" src="/images/whitelight.png" class="img-responsive" style="max-width:50%;">
-						<div class="caption" style="padding-left:10px;">
-							<h3 style="color:white;">Light 1</h3>
+			<div class="row" style="padding-top:52px;">
+				<div class="col-md-4 col-xs-4">
+					<center><img id="light1" src="whitelight.png" class="img-responsive" style="max-width:50%;"></center>
+						<center><div class="caption">
+							<h3 style="color:#b9ff46;">Light 1</h3>
 							<p><a href="#" id="light1on" class="btn btn-primary" role="button">Light On</a> <a href="#" id="light1off" class="btn btn-default" role="button">Light Off</a></p>
-						</div>
+						</div></center>
 				</div>
-				<div class="col-md-4" style="padding-top:65px;">
-					<img id="fan1" src="/images/fan.png" class="img-responsive" style="max-width:50%;">
-						<div class="caption" style="padding-left:10px;">
-							<h3 style="color:white;">Fan 1</h3>
+				<div class="col-md-4 col-xs-4">
+					<center><img id="fan1" src="fan.png" class="img-responsive" style="max-width:50%;"></center>
+						<center><div class="caption">
+							<h3 style="color:#b9ff46;">Fan 1</h3>
 							<p><a href="#" id="fan1on" class="btn btn-primary" role="button">Fan On</a> <a href="#" id="fan1off" class="btn btn-default" role="button">Fan Off</a></p>
-						</div>
+						</div></center>
 				</div>
-				<div class="col-md-4">
-					<img id="light2" src="/images/whitelight.png" class="img-responsive" style="max-width:50%;">
-						<div class="caption" style="padding-left:10px;">
-							<h3 style="color:white;">Light 2</h3>
+				<div class="col-md-4 col-xs-4">
+					<center><img id="light2" src="whitelight.png" class="img-responsive" style="max-width:50%;"></center>
+						<center><div class="caption">
+							<h3 style="color:#b9ff46;">Light 2</h3>
 							<p><a href="#" id="light2on" class="btn btn-primary" role="button">Light On</a> <a href="#" id="light2off" class="btn btn-default" role="button">Light Off</a></p>
-						</div>
+						</div></center>
 				</div>
 			</div>
 		</body>
 		<script>
-
-                        $(function(){
-			var socket = io.connect();
-                        
 			$("#light1on").click(function(){
-				$("#light1").attr("src","/images/yellowlight.png");
-                                socket.emit('light1',1);
+				$("#light1").attr("src","yellowlight.png");
 			});
-			socket.on('light1done',function(data){
-                              led.writeSync(data);   
-                           });
 			$("#light1off").click(function(){
-				$("#light1").attr("src","/images/whitelight.png");
-				socket.emit('light1off',0);
+				$("#light1").attr("src","whitelight.png");
 			});
-			socket.on('light1offdone',function(data){alert('working');
-                              led.writeSync(data);   
-                           });
-			
 			$("#fan1on").click(function(){
-				$("#fan1").attr("src","/images/fan.gif");
+				$("#fan1").attr("src","fan.gif");
 			});
 			$("#fan1off").click(function(){
-				$("#fan1").attr("src","/images/fan.png");
+				$("#fan1").attr("src","fan.png");
 			});
 			$("#light2on").click(function(){
-				$("#light2").attr("src","/images/yellowlight.png");
-				socket.emit('light2',1);
+				$("#light2").attr("src","yellowlight.png");
 			});
-			socket.on('light2done',function(data){
-                              led.writeSync(data);   
-                           });
 			$("#light2off").click(function(){
-				$("#light2").attr("src","/images/whitelight.png");
-				socket.emit('light1off',0);
+				$("#light2").attr("src","whitelight.png");
 			});
-			socket.on('light2offdone',function(data){alert('working');
-                              led.writeSync(data);   
-                           });
-                      });
 		</script>
 	</html>
