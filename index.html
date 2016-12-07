@@ -14,11 +14,12 @@
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
 			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 			<title>Home Automation</title>
-			<link rel="icon" type="image/png" href="haut.png" />
+			<link rel="icon" type="image/png" href="/images/android-icon-48x48.png" />
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
 					type="text/javascript"></script>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+                        <script src="/socket.io/socket.io.js"></script>
 		</head>
 		<body class="apply">
 			<div class="row" style="background-color:#34495E;height:60px;">
@@ -59,23 +60,47 @@
 			</div>
 		</body>
 		<script>
+
+                        $(function(){
+			var socket = io.connect();
+                        
 			$("#light1on").click(function(){
-				$("#light1").attr("src","yellowlight.png");
+				$("#light1").attr("src","/images/yellowlight.png");
+                                socket.emit('light1',1);
 			});
+			socket.on('light1done',function(data){                 
+                              data.led.writeSync(data.value);   
+                           });
 			$("#light1off").click(function(){
-				$("#light1").attr("src","whitelight.png");
+				$("#light1").attr("src","/images/whitelight.png");
+				socket.emit('light1off',0);
 			});
+			socket.on('light1offdone',function(data){alert(data.value);
+                              data.led.writeSync(data.value);   
+                           });
+			
 			$("#fan1on").click(function(){
-				$("#fan1").attr("src","fan.gif");
+				$("#fan1").attr("src","/images/fan.gif");
+				socket.emit('fan1',1);
 			});
 			$("#fan1off").click(function(){
-				$("#fan1").attr("src","fan.png");
+				$("#fan1").attr("src","/images/fan.png");
+				socket.emit('fan1off',1);
 			});
 			$("#light2on").click(function(){
-				$("#light2").attr("src","yellowlight.png");
+				$("#light2").attr("src","/images/yellowlight.png");
+				socket.emit('light2',1);
 			});
+			socket.on('light2done',function(data){
+                              data.led.writeSync(data.value);   
+                           });
 			$("#light2off").click(function(){
-				$("#light2").attr("src","whitelight.png");
+				$("#light2").attr("src","/images/whitelight.png");
+				socket.emit('light2off',0);
 			});
+			socket.on('light2offdone',function(data){
+                              data.led.writeSync(data.value);   
+                           });
+                      });
 		</script>
 	</html>
